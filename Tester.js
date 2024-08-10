@@ -121,3 +121,77 @@ function testLinkedList() {
 
 // Run the test suite
 testLinkedList();
+
+
+import { HashTable } from './HashTable.js'; // Make sure the path is correct
+
+function runTests() {
+    const hashTable = new HashTable();
+
+    // Test: Setting and Getting a value
+    hashTable.set("key1", "value1");
+    if (hashTable.get("key1") !== "value1") {
+        console.error("Failed: 'key1' should return 'value1'");
+    } else {
+        console.log("Passed: Setting and Getting 'key1'");
+    }
+
+    // Test: Updating a value
+    hashTable.set("key1", "newValue1");
+    if (hashTable.get("key1") !== "newValue1") {
+        console.error("Failed: 'key1' should return 'newValue1' after update");
+    } else {
+        console.log("Passed: Updating 'key1'");
+    }
+
+    // Test: Checking existence of a key
+    if (!hashTable.has("key1")) {
+        console.error("Failed: 'key1' should exist in the hash table");
+    } else {
+        console.log("Passed: Existence of 'key1'");
+    }
+
+    if (hashTable.has("key2")) {
+        console.error("Failed: 'key2' should not exist in the hash table");
+    } else {
+        console.log("Passed: Non-existence of 'key2'");
+    }
+
+    // Test: Removing a key
+    hashTable.remove("key1");
+    if (hashTable.has("key1")) {
+        console.error("Failed: 'key1' should be removed from the hash table");
+    } else {
+        console.log("Passed: Removing 'key1'");
+    }
+
+    if (hashTable.get("key1") !== null) {
+        console.error("Failed: 'key1' should return null after removal");
+    } else {
+        console.log("Passed: Getting 'key1' after removal");
+    }
+
+    // Test: Length of the hash table
+    hashTable.set("key2", "value2");
+    hashTable.set("key3", "value3");
+    if (hashTable.length() !== 2) {
+        console.error("Failed: Hash table should have length 2");
+    } else {
+        console.log("Passed: Length of the hash table");
+    }
+
+    // Test: Clearing the hash table
+    hashTable.clear();
+    if (hashTable.length() !== 0) {
+        console.error("Failed: Hash table should be empty after clear");
+    } else {
+        console.log("Passed: Clearing the hash table");
+    }
+}
+
+// Run the tests
+runTests();
+
+
+
+

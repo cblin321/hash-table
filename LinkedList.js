@@ -46,9 +46,14 @@ class LinkedList {
     pop() {
         if (this.size === 0)
             throw new Error("Can't pop from empty list");
-
+        if (this.size == 1) {
+            this.tail = null;
+            this.head = null;
+            this.size--;
+            return;
+        }
         let curr = this.head;
-        for (let i = 0; i < this.size - 1; i++) {
+        for (let i = 0; i < this.size - 2; i++) {
             curr = curr.next;
         }
 
@@ -91,7 +96,24 @@ class LinkedList {
     }
 
     removeAt(index) {
-        //TODO
+        if (this.size === 0 || index >= this.size)
+            throw new Error("Can't remove from empty/full list")
+        if (index === this.size - 1) {
+            this.pop();
+            return;
+        }
+        if (index === 0) {
+            this.head = this.head.next;
+        } else {
+            let prev = null;
+            let curr = this.head;
+            for (let i = 0; i < index; i++) {
+                prev = curr;
+                curr = curr.next;
+            }
+            prev.next = curr.next;
+        }
+        size--;
     }
 
 }
