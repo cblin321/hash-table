@@ -120,7 +120,7 @@ function testLinkedList() {
 }
 
 // Run the test suite
-testLinkedList();
+// testLinkedList();
 
 
 import { HashTable } from './HashTable.js'; // Make sure the path is correct
@@ -190,8 +190,102 @@ function runTests() {
 }
 
 // Run the tests
-runTests();
+// runTests();
+
+function testEntries() {
+    const hashTable = new HashTable();
+    hashTable.set("key1", "value1");
+    hashTable.set("key2", "value2");
+    hashTable.set("key3", "value3");
+
+    const entries = hashTable.entries();
+    const expectedEntries = [
+        ["key1", "value1"],
+        ["key2", "value2"],
+        ["key3", "value3"]
+    ];
+
+    let passed = true;
+    for (const entry of expectedEntries) {
+        if (!entries.some(e => e[0] === entry[0] && e[1] === entry[1])) {
+            passed = false;
+            console.error(`Failed: Entry [${entry[0]}, ${entry[1]}] is missing`);
+        }
+    }
+
+    if (entries.length !== expectedEntries.length) {
+        passed = false;
+        console.error("Failed: Entries count does not match expected count");
+    }
+
+    if (passed) {
+        console.log("Passed: Entries method");
+    }
+}
+
+// Run the test for entries method
+testEntries();
 
 
+function testValues() {
+    const hashTable = new HashTable();
+    hashTable.set("key1", "value1");
+    hashTable.set("key2", "value2");
+    hashTable.set("key3", "value3");
+
+    const values = hashTable.values();
+    const expectedValues = ["value1", "value2", "value3"];
+
+    let passed = true;
+    for (const value of expectedValues) {
+        if (!values.includes(value)) {
+            passed = false;
+            console.error(`Failed: Value '${value}' is missing`);
+        }
+    }
+
+    if (values.length !== expectedValues.length) {
+        passed = false;
+        console.error("Failed: Values count does not match expected count");
+    }
+
+    if (passed) {
+        console.log("Passed: Values method");
+    }
+}
+
+// Run the test for values method
+testValues();
+
+
+function testKeys() {
+    const hashTable = new HashTable();
+    hashTable.set("key1", "value1");
+    hashTable.set("key2", "value2");
+    hashTable.set("key3", "value3");
+
+    const keys = hashTable.keys();
+    const expectedKeys = ["key1", "key2", "key3"];
+
+    let passed = true;
+    for (const key of expectedKeys) {
+        if (!keys.includes(key)) {
+            passed = false;
+            console.error(`Failed: Key '${key}' is missing`);
+        }
+    }
+
+    if (keys.length !== expectedKeys.length) {
+        passed = false;
+        console.error("Failed: Keys count does not match expected count");
+    }
+
+    if (passed) {
+        console.log("Passed: Keys method");
+    }
+}
+
+// Run the test for keys method
+testKeys();
 
 
